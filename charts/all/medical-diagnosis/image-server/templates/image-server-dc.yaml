@@ -7,6 +7,19 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-wave: "10"
 spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                  - "linux"
+              - key: kubernetes.azure.com/agentpool
+                operator: In
+                values:
+                  - "confcompool1"
   triggers:
     - type: ImageChange
       imageChangeParams:
@@ -68,9 +81,21 @@ spec:
             requests:
               cpu: 400m
               memory: 100M
+          volumeMounts:
+            - name: dev-sgx
+              mountPath: /dev/sgx_enclave
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - IPC_LOCK
           imagePullPolicy: IfNotPresent
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx_enclave
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
