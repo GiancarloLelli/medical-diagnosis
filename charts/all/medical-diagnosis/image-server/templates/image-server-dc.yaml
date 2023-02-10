@@ -7,19 +7,6 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-wave: "10"
 spec:
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: kubernetes.io/os
-                operator: In
-                values:
-                  - "linux"
-              - key: kubernetes.azure.com/agentpool
-                operator: In
-                values:
-                  - "confcompool1"
   triggers:
     - type: ImageChange
       imageChangeParams:
