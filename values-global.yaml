@@ -17,7 +17,7 @@ global:
     namespace: "xraylab-1"
 
     s3:
-      bucketSource: demoedgebucket
+      bucketSource: https://xrayazurebucket.blob.core.windows.net/edgemedical/
       bucketBaseName: "xray-source"
 
 main:
