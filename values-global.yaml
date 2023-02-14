@@ -8,7 +8,7 @@ global:
 
   datacenter:
     cloudProvider: azure
-    storageClassName: managed-csi
+    storageClassName: azurefile-csi
     region: northeurope
     clustername: edgemedical
     domain: acicrome.local
