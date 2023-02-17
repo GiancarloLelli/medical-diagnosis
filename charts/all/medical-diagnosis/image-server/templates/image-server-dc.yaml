@@ -6,17 +6,10 @@ metadata:
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-wave: "10"
+    app.kubernetes.io/managed-by: "Helm"
+    meta.helm.sh/release-name: "image-server"
+    meta.helm.sh/release-namespace: "default"
 spec:
-  triggers:
-    - type: ImageChange
-      imageChangeParams:
-        automatic: true
-        containerNames:
-          - image-server
-        from:
-          kind: ImageStreamTag
-          name: image-server:latest
-    - type: ConfigChange
   replicas: 1
   revisionHistoryLimit: 3
   template:
@@ -26,7 +19,7 @@ spec:
     spec:
       containers:
         - name: image-server
-          image: image-server:latest
+          image: "giancarlolelli/xraylab-image-server:scone-sgx-01"
           env:
             - name: database-user
               valueFrom:
@@ -63,8 +56,8 @@ spec:
               protocol: TCP
           resources:
             limits:
-              cpu: "2"
-              memory: 1G
+              cpu: "1"
+              memory: 500M
             requests:
               cpu: 400m
               memory: 100M

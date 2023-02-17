@@ -5,6 +5,9 @@ metadata:
   namespace: "{{ .Values.global.xraylab.namespace }}"
   annotations:
     argocd.argoproj.io/sync-wave: "15"
+    app.kubernetes.io/managed-by: "Helm"
+    meta.helm.sh/release-name: "image-server"
+    meta.helm.sh/release-namespace: "default"
 spec:
   ports:
     - protocol: TCP

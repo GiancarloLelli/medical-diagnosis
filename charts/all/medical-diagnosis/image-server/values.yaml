@@ -1,6 +1,6 @@
 global:
   xraylab:
-    namespace: xraylab-1
+    namespace: helm-install-tester-bis
   datacenter:
     clustername: ""
     s3:
