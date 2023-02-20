@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: image-server
-          image: "giancarlolelli/xraylab-image-server:scone-sgx-01"
+          image: "giancarlolelli/xraylab-image-server:scone-sgx-03"
           env:
             - name: database-user
               valueFrom:
