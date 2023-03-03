@@ -19,24 +19,24 @@ spec:
     spec:
       containers:
         - name: image-server
-          image: "giancarlolelli/xraylab-image-server:scone-sgx-03"
+          image: "docker.io/aiannaccaro/gramine:python3-makev12"
           env:
-            - name: database-user
+            - name: database_user
               valueFrom:
                 secretKeyRef:
                   name: db-secret
                   key: database-user
-            - name: database-password
+            - name: database_password
               valueFrom:
                 secretKeyRef:
                   name: db-secret
                   key: database-password
-            - name: database-host
+            - name: database_host
               valueFrom:
                 secretKeyRef:
                   name: db-secret
                   key: database-host
-            - name: database-db
+            - name: database_db
               valueFrom:
                 secretKeyRef:
                   name: db-secret
@@ -46,7 +46,7 @@ spec:
                 configMapKeyRef:
                   name: service-point
                   key: url-external
-            - name: bucket-base-name
+            - name: bucket_base_name
               valueFrom:
                 configMapKeyRef:
                   name: buckets-config
