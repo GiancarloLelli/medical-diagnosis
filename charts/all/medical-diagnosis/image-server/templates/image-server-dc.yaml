@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: image-server
-          image: "docker.io/aiannaccaro/gramine:python3-makev12"
+          image: "docker.io/aiannaccaro/gramine:gsc-image-server-v1"
           env:
             - name: database_user
               valueFrom:
